@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link href="style.css" rel="stylesheet" type="text/css" />
+    <title>Math Drill</title>
+  </head>
+  <body>
+    <div id="apple">
+      <div class="container front">
+        <div class="row"><div class="col">
+          <h1 class="centerText">Math Drill</h1>
+          <div class="d-none error" id="errorMessage"></div>
+        </div></div>
+
+        <div class="row"><div class="col">
+          <h2>Addition and Subtraction</h2>
+        </div></div>
+
+        <div class="row justify-content-center"><div class="col">
+          <div class="row">
+            <div class="col-md-3">
+              <div class="form-group form-check">
+                <input type="checkbox" class="form-check-input" id="addition">
+                <label class="form-check-label" for="addition">Addition</label>
+              </div>
+              <div class="form-group form-check">
+                <input type="checkbox" class="form-check-input" id="subtraction">
+                <label class="form-check-label" for="subtraction">Subtraction</label>
+              </div>
+              <h4>Setting:</h4>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="typeAddSub" id="typeAddSub1" value="sum" checked>
+                <label class="form-check-label" for="typeAddSub1">
+                  Sum 
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="typeAddSub" id="typeAddSub2" value="range">
+                <label class="form-check-label" for="typeAddSub2">
+                  Range
+                </label>
+              </div>
+            </div>
+            <div class="col bottom-align">
+              <div class="bottom-align-text">
+                <div id="rangeAddSub" class="d-none">
+                  <div class="form-group">
+                    1st Term: 
+                    <input type="number" id="asta1"/>
+                    to 
+                    <input type="number" id="asta2"/>
+                  </div>
+                  <div class="form-group">
+                    2nd Term: 
+                    <input type="number" id="astb1"/>
+                    to 
+                    <input type="number" id="astb2"/>
+                  </div>
+                  <div class="form-group form-check">
+                    <input type="checkbox" class="form-check-input" id="randomAddSub">
+                    <label class="form-check-label" for="randomAddSub">Randomize Order</label>
+                  </div>
+                </div>
+                <div id="sumAddSub">
+                  <div class="form-group">
+                    Sum: <input type="number" id="asSum"/>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div></div>
+
+        <hr/>
+
+        <div class="row"><div class="col">
+          <h2>Multiplication and Division</h2>
+        </div></div>
+
+        <div class="row justify-content-center"><div class="col">
+          <div class="row">
+            <div class="col-md-3">
+              <div class="form-group form-check">
+                <input type="checkbox" class="form-check-input" id="multiplication">
+                <label class="form-check-label" for="multiplication">Multiplication</label>
+              </div>
+              <div class="form-group form-check">
+                <input type="checkbox" class="form-check-input" id="division">
+                <label class="form-check-label" for="division">Division</label>
+              </div>
+              <div style="margin-bottom:4em;">&nbsp;</div>
+            </div>
+            <div class="col bottom-align">
+              <div class="bottom-align-text">
+                <div id="rangeMultDiv">
+                  <div class="form-group">
+                    1st Term: 
+                    <input type="number" id="mdta1"/>
+                    to 
+                    <input type="number" id="mdta2"/>
+                  </div>
+                  <div class="form-group">
+                    2nd Term: 
+                    <input type="number" id="mdtb1"/>
+                    to 
+                    <input type="number" id="mdtb2"/>
+                  </div>
+                  <div class="form-group form-check">
+                    <input type="checkbox" class="form-check-input" id="randomMultDiv">
+                    <label class="form-check-label" for="randomMultDiv">Randomize Order</label>
+                  </div>
+                </div>
+                <div id="sumMultDiv" class="d-none">
+                  <div class="form-group">
+                    Sum: <input type="number" id="mdSum"/>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div></div>
+          
+          <hr/>
+
+          <div class="form-group row">
+            <div class="col-md-3">
+              <label for="duration">Duration (in seconds)</label>
+              <select id="duration" class="form-control">
+                <option value="30">30</option>
+                <option value="60">60</option>
+                <option value="90">90</option>
+                <option value="120">120</option>
+                <option value="150">150</option>
+                <option value="180">180</option>
+              </select>
+            </div>
+          </div>
+
+          <button type="button" class="btn btn-primary" onclick="start();return false;">Start</button>
+      </div>
+    </div>
+
+    <div id="banana" class="container d-none" style="height: 100%">
+      <div class="row justify-content-between">
+        <div class="col-md-4">
+          Time Remaining: <span id="timeLeft"></span>
+        </div>
+        <div class="col-md-4 alignRight">
+          <button type="button" class="btn btn-primary" onclick="setupDrill();return false;">Restart</button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4">
+          Score: <span id="score"></span>
+        </div>
+      </div>
+      <div class="row align-items-center justify-content-center question">
+        <div class="col-mid-4">
+          <div id="question"></div>
+        </div>
+        <div class="col-mid-1">
+          &nbsp; = &nbsp;
+        </div>
+        <div class="col-mid-2">
+          <input type="text" id="answer" class="answer"/>
+        </div>
+      </div>
+    </div>
+
+    <div id="carrot" class="d-none">
+      <div class="container front">
+        <div class="row"><div class="col">
+          <h1 class="centerText">Math Drill Results</h1>
+        </div></div>
+
+        <div class="row"><div class="col">
+          <h2 class="leftMargin centerText">Score: <span id="score"></span></h2>
+        </div></div>
+
+        <div class="row"><div class="col">
+          <h3 class="topMargin">Settings: </h3>
+        </div></div>
+
+        <div id="settings" class="row"><div class="col">
+          <div class="leftMargin">Duration: <span id="duration"></span></div>
+
+          <div id="addSub" class='d-none'>
+            <strong>Addition and Subtraction</strong><br/>
+            <div class="leftMargin">Operators: <span id="ops"></span></div>
+            <div id="AS_range" class="d-none leftMargin">
+              Randomized: <span id="ran"></span><br/>
+              1st Term: <span id="one"></span><br/>
+              2nd Term: <span id="two"></span><br/>
+            </div>
+            <div id="AS_sum" class="d-none leftMargin">
+              Sum: <span id="sum"></span><br/>
+            </div>
+          </div>
+
+          <div id="multDiv" class='d-none'>
+            <strong >Multiplication and Division</strong><br/>
+            <div class="d-none error" id="reportErrorMessage"></div>
+            <div class="leftMargin">Operators: <span id="ops"></span></div>
+            <div id="MD_range" class="leftMargin">
+              Randomized: <span id="ran"></span><br/>
+              1st Term: <span id="one"></span><br/>
+              2nd Term: <span id="two"></span><br/>
+            </div>
+          </div>
+        </div></div>
+
+        <div class="row topMargin"><div class="col">
+          <button type="button" class="btn btn-primary" onclick="setupDrill();return false;">Try Again</button>
+          <button type="button" class="btn btn-primary" onclick="clearSettings();return false;">Change Settings</button>
+        </div></div>
+      </div>
+    </div>
+    
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
